@@ -14,12 +14,12 @@ public record PersonReportWriterInh(String outputFile) {
     public void writeReport(Map<String, List<Person>> categorizedPeople) throws IOException {
         try (var writer = new BufferedWriter(new FileWriter(outputFile))) {
             if (!categorizedPeople.isEmpty()) {
-                writeLine(writer, categorizedPeople);
+                writeReport(writer, categorizedPeople);
             }
         }
     }
 
-    private void writeLine(BufferedWriter writer, Map<String, List<Person>> categorizedPeople) {
+    private void writeReport(BufferedWriter writer, Map<String, List<Person>> categorizedPeople) {
         categorizedPeople.forEach((key, value) ->
                 writeLine(writer, key + ": " + getNames(value)));
     }
